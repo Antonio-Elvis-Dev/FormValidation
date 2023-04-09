@@ -54,9 +54,7 @@ const createFuncionarioFormSchema = z.object({
   datanasc: z
     .string()
     .nonempty("A data é obrigatória")
-    .transform((datanasc) => {
-      return String(datanasc);
-    }),
+    ,
   endereco: z
     .string()
     .nonempty("O endereço é obrigatório")

@@ -43,12 +43,10 @@ const createFornecedorFormSchema = z.object({
     .transform((cnpj) => {
       return String(cnpj);
     }),
-  datanasc: z
+    datainic: z
     .string()
     .nonempty("A data é obrigatória")
-    .transform((datanasc) => {
-      return String(datanasc);
-    }),
+    ,
   endereco: z
     .string()
     .nonempty("O endereço é obrigatório")
@@ -229,9 +227,9 @@ export default function CadastroFornecedor() {
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
                   type="date"
-                  {...register("datanasc")}
+                  {...register("datainic")}
                 />
-                {errors.datanasc && <span className="text-red-400 font-semibold">{errors.datanasc.message}</span>}
+                {errors.datainic && <span className="text-red-400 font-semibold">{errors.datainic.message}</span>}
               </div>
             </div>
             <div className="flex flex-col gap-2 w-full max-w-md m-4">

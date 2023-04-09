@@ -46,9 +46,7 @@ const createConcorrenteFormSchema = z.object({
   datainic: z
     .string()
     .nonempty("A data é obrigatória")
-    .transform((datanasc) => {
-      return String(datanasc);
-    }),
+    ,
   endereco: z
     .string()
     .nonempty("O endereço é obrigatório")

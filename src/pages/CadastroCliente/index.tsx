@@ -53,10 +53,7 @@ const createClientFormSchema = z.object({
     }),
   datanasc: z
     .string()
-    .nonempty("A data é obrigatória")
-    .transform((datanasc) => {
-      return String(datanasc);
-    }),
+    .nonempty("A data é obrigatória"),
   endereco: z
     .string()
     .nonempty("O endereço é obrigatório")
@@ -259,8 +256,10 @@ export default function CadastroCliente() {
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
                   type="date"
+
                   {...register("datanasc")}
                 />
+                
                 {errors.datanasc && (
                   <span className="text-red-400 font-semibold">
                     {errors.datanasc.message}

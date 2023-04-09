@@ -74,15 +74,11 @@ const createProdutoFormSchema = z.object({
   datafab: z
     .string()
     .nonempty("A data de fabricação é obrigatória")
-    .transform((datanasc) => {
-      return String(datanasc);
-    }),
+    ,
   datavalid: z
     .string()
     .nonempty("A data de validade é obrigatória")
-    .transform((datanasc) => {
-      return String(datanasc);
-    }),
+    ,
 });
 
 type CreateProdutoFormData = z.infer<typeof createProdutoFormSchema>;
