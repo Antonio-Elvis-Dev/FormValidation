@@ -51,9 +51,7 @@ const createClientFormSchema = z.object({
     .transform((tel) => {
       return String(tel);
     }),
-  datanasc: z
-    .string()
-    .nonempty("A data é obrigatória"),
+  datanasc: z.string().nonempty("A data é obrigatória"),
   endereco: z
     .string()
     .nonempty("O endereço é obrigatório")
@@ -139,7 +137,7 @@ export default function CadastroCliente() {
     resolver: zodResolver(createClientFormSchema),
   });
 
-  function createClient(data) {
+  function createClient(data: any) {
     setOutput(JSON.stringify(data, null, 2));
   }
 
@@ -256,10 +254,9 @@ export default function CadastroCliente() {
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
                   type="date"
-
                   {...register("datanasc")}
                 />
-                
+
                 {errors.datanasc && (
                   <span className="text-red-400 font-semibold">
                     {errors.datanasc.message}
@@ -329,8 +326,10 @@ export default function CadastroCliente() {
                   <option selected value="padrao">
                     Selecione o Estado...
                   </option>
-                  {estados.map((item) => (
-                    <option value={item}>{item}</option>
+                  {estados.map((item, index) => (
+                    <option key={index} value={item}>
+                      {item}
+                    </option>
                   ))}
                 </select>
                 {errors.estado && (

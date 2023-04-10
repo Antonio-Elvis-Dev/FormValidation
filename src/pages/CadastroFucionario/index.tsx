@@ -162,7 +162,7 @@ export default function CadastroFuncionario() {
     resolver: zodResolver(createFuncionarioFormSchema),
   });
 
-  function createFuncionario(data) {
+  function createFuncionario(data:any) {
     setOutput(JSON.stringify(data, null, 2));
   }
 

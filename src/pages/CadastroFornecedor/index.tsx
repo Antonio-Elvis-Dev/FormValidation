@@ -157,7 +157,7 @@ export default function CadastroFornecedor() {
     resolver: zodResolver(createFornecedorFormSchema),
   });
 
-  function createFornecedor(data) {
+  function createFornecedor(data:any) {
     setOutput(JSON.stringify(data, null, 2));
   }
 

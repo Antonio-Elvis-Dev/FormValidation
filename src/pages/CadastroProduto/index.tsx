@@ -114,7 +114,7 @@ export default function CadastroProduto() {
     resolver: zodResolver(createProdutoFormSchema),
   });
 
-  function createProduto(data) {
+  function createProduto(data:any) {
     setOutput(JSON.stringify(data, null, 2));
   }
 

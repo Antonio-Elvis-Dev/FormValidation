@@ -168,7 +168,7 @@ export default function CadastroConcorrente() {
     resolver: zodResolver(createConcorrenteFormSchema),
   });
 
-  function createConcorrente(data) {
+  function createConcorrente(data:any) {
     setOutput(JSON.stringify(data, null, 2));
   }
 
