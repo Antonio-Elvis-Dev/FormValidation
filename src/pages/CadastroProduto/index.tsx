@@ -60,10 +60,7 @@ const createProdutoFormSchema = z.object({
     .min(5, "Campo inválido")
     .nonempty("A categoria é obrigatório"),
 
-  nomefornecedor: z
-    .string()
-    .nonempty("O nome do fornecedor é obrigatório")
-    ,
+  nomefornecedor: z.string().nonempty("O nome do fornecedor é obrigatório"),
   cnpjfornecedor: z
     .string()
     .nonempty("O CNPJ do fornecedor é obrigatório")
@@ -71,14 +68,8 @@ const createProdutoFormSchema = z.object({
       return String(cnpjfornecedor);
     }),
 
-  datafab: z
-    .string()
-    .nonempty("A data de fabricação é obrigatória")
-    ,
-  datavalid: z
-    .string()
-    .nonempty("A data de validade é obrigatória")
-    ,
+  datafab: z.string().nonempty("A data de fabricação é obrigatória"),
+  datavalid: z.string().nonempty("A data de validade é obrigatória"),
 });
 
 type CreateProdutoFormData = z.infer<typeof createProdutoFormSchema>;
@@ -114,7 +105,7 @@ export default function CadastroProduto() {
     resolver: zodResolver(createProdutoFormSchema),
   });
 
-  function createProduto(data:any) {
+  function createProduto(data: any) {
     setOutput(JSON.stringify(data, null, 2));
   }
 
@@ -206,7 +197,8 @@ export default function CadastroProduto() {
                   </span>
                 )}
               </div>
-
+            </div>
+            <div className="flex flex-col gap-2 w-full max-w-md m-4">
               <div className="flex flex-col gap-1">
                 <label htmlFor="" className="">
                   Data de Fabricação.:
@@ -237,8 +229,6 @@ export default function CadastroProduto() {
                   </span>
                 )}
               </div>
-            </div>
-            <div className="flex flex-col gap-2 w-full max-w-md m-4">
               <div className="flex flex-col gap-1">
                 <label htmlFor="" className="">
                   Qtd em estoque:
@@ -260,10 +250,13 @@ export default function CadastroProduto() {
                   Categoria:
                 </label>
 
-                <select 
-                {...register('categoria')}
-                className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3">
-                  <option selected value="pad">Selecione uma Categoria</option>
+                <select
+                  {...register("categoria")}
+                  className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                >
+                  <option selected value="pad">
+                    Selecione uma Categoria
+                  </option>
                   {produto.map((item, index) => {
                     return (
                       <option key={index} value={item}>
