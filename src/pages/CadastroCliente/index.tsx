@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import InputMask from "react-input-mask";
 import { useForm } from "react-hook-form";
 import { date, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,10 +38,12 @@ const createClientFormSchema = z.object({
   cpf: z
     .string()
     .nonempty("O cpf é obrigatório")
-    .min(11, "O CPF deve ter no mínimo 11 digitos")
-    .max(11, "O CPF deve ter no máximo 11 digitos")
+    .min(14, "O CPF deve ter no mínimo 11 digitos")
+    .max(14, "O CPF deve ter no máximo 11 digitos")
     .transform((cpf) => {
-      return String(cpf);
+      return (cpf).replace(/[^0-9]/g,'');
+
+
     }),
   telefone: z
     .string()
@@ -141,6 +143,11 @@ export default function CadastroCliente() {
     setOutput(JSON.stringify(data, null, 2));
   }
 
+
+  const  onlyNumbers = (str:any) =>{
+    str.replace(/[^0-9]/g,'');
+  }
+
   return (
     <div className="bg-zinc-800">
       <Menu />
@@ -204,9 +211,11 @@ export default function CadastroCliente() {
                 <label htmlFor="" className="">
                   CPF:
                 </label>
-                <input
+                <InputMask
+                  mask="999.999.999-99"
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
-                  type="number"
+                  // type="number"
+
                   {...register("cpf")}
                 />
                 {errors.cpf && (
