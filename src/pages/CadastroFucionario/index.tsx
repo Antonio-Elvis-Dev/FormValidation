@@ -95,6 +95,8 @@ const createFuncionarioFormSchema = z.object({
     .string()
     .min(7, "Campo inválido")
     .nonempty("O estado é obrigatório"),
+    cep: z.string().nonempty("CEP deve ter 8 digitos"),
+
   sexo: z.string(),
 
   cargo: z.string().min(7, "Campo inválido").nonempty("Cargo é obrigatório"),
@@ -219,6 +221,7 @@ export default function CadastroFuncionario() {
                 </label>
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  placeholder="Somente números"
                   type="number"
                   {...register("cpf")}
                 />
@@ -269,10 +272,27 @@ export default function CadastroFuncionario() {
                 <label htmlFor="">Telefone:</label>
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  placeholder="Somente números"
                   type="number"
                   {...register("telefone")}
                 />
                 {errors.telefone && <span className="text-red-400 font-semibold">{errors.telefone.message}</span>}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="" className="">
+                  CEP:
+                </label>
+                <input
+                  className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  type="number"
+                  placeholder="Somente numeros"
+                  {...register("cep")}
+                />
+                {errors.cep && (
+                  <span className="text-red-400 font-semibold">
+                    {errors.cep.message}
+                  </span>
+                )}
               </div>
               <div className="flex flex-col gap-1">
                 <label htmlFor="">Endereço:</label>

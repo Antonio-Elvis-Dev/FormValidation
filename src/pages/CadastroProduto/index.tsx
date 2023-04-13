@@ -63,6 +63,8 @@ const createProdutoFormSchema = z.object({
   nomefornecedor: z.string().nonempty("O nome do fornecedor é obrigatório"),
   cnpjfornecedor: z
     .string()
+    .min(14, "O CNPJ deve ter 14 digitos")
+    .max(14, "O CNPJ deve ter 14 digitos")
     .nonempty("O CNPJ do fornecedor é obrigatório")
     .transform((cnpjfornecedor) => {
       return String(cnpjfornecedor);
@@ -158,6 +160,7 @@ export default function CadastroProduto() {
                 </label>
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  placeholder="Somente números"
                   type="number"
                   {...register("codbarras")}
                 />
@@ -293,6 +296,7 @@ export default function CadastroProduto() {
                 </label>
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  placeholder="Somente números"
                   type="number"
                   {...register("cnpjfornecedor")}
                 />

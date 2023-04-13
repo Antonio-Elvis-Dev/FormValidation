@@ -38,8 +38,8 @@ const createFornecedorFormSchema = z.object({
   cnpj: z
     .string()
     .nonempty("O CNPJ é obrigatório")
-    .min(11, "O CNPJ deve ter no mínimo 11 digitos")
-    .max(11, "O CNPJ deve ter no máximo 11 digitos")
+    .min(14, "O CNPJ deve ter 14 digitos")
+    .max(14, "O CNPJ deve ter 14 digitos")
     .transform((cnpj) => {
       return String(cnpj);
     }),
@@ -89,6 +89,8 @@ const createFornecedorFormSchema = z.object({
     .nonempty("O estado é obrigatório"),
 
   ramo: z.string().min(4, "Campo inválido").nonempty("O estado é obrigatório"),
+  cep: z.string().nonempty("CEP deve ter 8 digitos"),
+
   descricao: z.string().nonempty("Descrição obrigatorio")
 });
 
@@ -214,6 +216,7 @@ export default function CadastroFornecedor() {
                 </label>
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  placeholder="Somente números"
                   type="number"
                   {...register("cnpj")}
                 />
@@ -247,6 +250,22 @@ export default function CadastroFornecedor() {
                   ))}
                 </select>
                 {errors.ramo && <span className="text-red-400 font-semibold">{errors.ramo.message}</span>}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="" className="">
+                  CEP:
+                </label>
+                <input
+                  className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  type="number"
+                  placeholder="Somente numeros"
+                  {...register("cep")}
+                />
+                {errors.cep && (
+                  <span className="text-red-400 font-semibold">
+                    {errors.cep.message}
+                  </span>
+                )}
               </div>
               <div className="flex flex-col gap-1">
                 <label htmlFor="">Endereço:</label>

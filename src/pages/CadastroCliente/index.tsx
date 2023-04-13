@@ -92,6 +92,8 @@ const createClientFormSchema = z.object({
     .string()
     .min(7, "Campo inválido")
     .nonempty("O estado é obrigatório"),
+  cep: z.string().nonempty("CEP deve ter 8 digitos"),
+
   sexo: z.string(),
 });
 
@@ -207,6 +209,7 @@ export default function CadastroCliente() {
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
                   type="number"
+                  placeholder="Somente numeros"
                   {...register("cpf")}
                 />
                 {errors.cpf && (
@@ -270,11 +273,28 @@ export default function CadastroCliente() {
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
                   type="number"
+                  placeholder="Somente números"
                   {...register("telefone")}
                 />
                 {errors.telefone && (
                   <span className="text-red-400 font-semibold">
                     {errors.telefone.message}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="" className="">
+                  CEP:
+                </label>
+                <input
+                  className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  type="number"
+                  placeholder="Somente numeros"
+                  {...register("cep")}
+                />
+                {errors.cep && (
+                  <span className="text-red-400 font-semibold">
+                    {errors.cep.message}
                   </span>
                 )}
               </div>

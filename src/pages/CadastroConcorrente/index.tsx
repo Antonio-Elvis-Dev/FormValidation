@@ -38,8 +38,8 @@ const createConcorrenteFormSchema = z.object({
   cnpj: z
     .string()
     .nonempty("O CNPJ é obrigatório")
-    .min(11, "O CNPJ deve ter no mínimo 11 digitos")
-    .max(11, "O CNPJ deve ter no máximo 11 digitos")
+    .min(14, "O CNPJ deve ter 14 digitos")
+    .max(14, "O CNPJ deve ter 14 digitos")
     .transform((cnpj) => {
       return String(cnpj);
     }),
@@ -90,6 +90,8 @@ const createConcorrenteFormSchema = z.object({
 
   ramo: z.string().min(4, "Campo inválido").nonempty("O estado é obrigatório"),
   porte: z.string().min(4, "Campo inválido").nonempty("O porte é obrigatório"),
+  cep: z.string().nonempty("CEP deve ter 8 digitos"),
+
   capital: z.string().nonempty("Capital é brigatório").transform((capital) => {
     return String(capital);
   }),
@@ -238,6 +240,7 @@ export default function CadastroConcorrente() {
                 <input
                   className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
                   type="number"
+                  placeholder="Somente números"
                   {...register("cnpj")}
                 />
                 {errors.cnpj && (
@@ -314,6 +317,22 @@ export default function CadastroConcorrente() {
                 {errors.porte && (
                   <span className="text-red-400 font-semibold">
                     {errors.porte.message}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="" className="">
+                  CEP:
+                </label>
+                <input
+                  className="border border-zinc-800 bg-zinc-900 text-white shadow-sm rounded h-10 px-3"
+                  type="number"
+                  placeholder="Somente numeros"
+                  {...register("cep")}
+                />
+                {errors.cep && (
+                  <span className="text-red-400 font-semibold">
+                    {errors.cep.message}
                   </span>
                 )}
               </div>
