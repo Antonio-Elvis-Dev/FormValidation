@@ -144,9 +144,7 @@ export default function CadastroCliente() {
   }
 
 
-  const  onlyNumbers = (str:any) =>{
-    str.replace(/[^0-9]/g,'');
-  }
+
 
   return (
     <div className="bg-zinc-800">
